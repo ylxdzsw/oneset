@@ -7,6 +7,6 @@
 [text](placeholder="1,1,1").demands 每样物品需求量。选填，默认全为1。
 
 [checkbox].multidrop 单次抽卡可以同时出多样物品
-[checkbox].fast_approximation 快速估算（二分搜索 inf{x ∈ ℝ: p ≤ I₁₋ₓ(n - k, 1 + k)}）
+[checkbox].fast_approximation 快速估算（二分搜索二项分布 cdf）
 
 [require](main.js)
