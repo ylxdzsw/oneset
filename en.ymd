@@ -1,0 +1,12 @@
+[mixin] form
+
+[title]: One Set
+
+[h3] One Set
+[text](placeholder="0.01,1/200,0.02").droprates Comma-separated droprates of each item. e.g., fill 0.01,0.02 for two items whose droprates are 1% and 2%. Integer division like 1/70 is supported.
+[text](placeholder="1,1,1").demands Demands. Optional. Defaults to one for each item.
+
+[checkbox].multidrop One chest may drop multiple items
+[checkbox].fast_approximation Fast approximation (binary search with the cdf of binomial distribution)
+
+[require](main.js)

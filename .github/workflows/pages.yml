@@ -16,6 +16,9 @@ jobs:
       - name: Build
         run: deno run -A --unstable https://raw.githubusercontent.com/ylxdzsw/nattoppet/master/nattoppet.ts main.ymd > index.html
 
+      - name: Build En
+        run: deno run -A --unstable https://raw.githubusercontent.com/ylxdzsw/nattoppet/master/nattoppet.ts en.ymd > en.html
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
