@@ -87,7 +87,9 @@ async function run(args) {
         }
     }
 
-    let result = "集齐概率\t抽卡次数\n"
+    let result = typeof Deno != 'undefined' || document.title.includes("One Set")
+        ? "Prob.\t#Chests\n"
+        : "集齐概率\t抽卡次数\n"
     for (let i = 0; i < checkpoints.length; i++)
         result += checkpoints[i] + '\t' + (checkpoint_pulls[i] ?? `>${max_pull}`) + '\n'
 
