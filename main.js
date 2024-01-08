@@ -30,19 +30,16 @@ async function run(args) {
     const checkpoints = [0.5, 0.8, 0.9, 0.95, 0.99, 0.999, 0.9999]
     const checkpoint_pulls = checkpoints.map(x => null)
 
-    // console.log(fast_approximation_probability(15, droprates, demands, (await import('https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-binomial-cdf@esm/index.mjs')).default))
+    // console.log(fast_approximation_probability(15, droprates, demands))
     // console.log(multi_drop_probability(15, droprates, demands, []))
     // console.log(single_drop_probability(15, droprates, demands, {}))
 
     if (args.fast_approximation) {
-        const mod = await import('https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-binomial-cdf@esm/index.mjs')
-        const cdf = mod.default
-
         checkpoint_loop: for (let checkpoint_index = 0; checkpoint_index < checkpoints.length; checkpoint_index++) {
             let l = demands.reduce((a, b) => Math.max(a, b), 0)
             let r = l * 2
 
-            while (fast_approximation_probability(r, droprates, demands, cdf) < checkpoints[checkpoint_index]) {
+            while (fast_approximation_probability(r, droprates, demands) < checkpoints[checkpoint_index]) {
                 r *= 2
                 if (r >= max_pull)
                     break checkpoint_loop
@@ -50,7 +47,7 @@ async function run(args) {
 
             while (r > l + 1) {
                 const mid = Math.floor(l / 2 + r / 2)
-                if (fast_approximation_probability(mid, droprates, demands, cdf) < checkpoints[checkpoint_index])
+                if (fast_approximation_probability(mid, droprates, demands) < checkpoints[checkpoint_index])
                     l = mid
                 else
                     r = mid
@@ -153,7 +150,7 @@ function multi_drop_probability(pulls, droprates, demands, cache) {
     return p
 }
 
-function fast_approximation_probability(pulls, droprates, demands, cdf) {
+function fast_approximation_probability(pulls, droprates, demands) {
     let p = 1
     for (let i = 0; i < droprates.length; i++)
         if (demands[i] > 0)
