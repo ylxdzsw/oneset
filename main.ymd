@@ -9,4 +9,5 @@
 [checkbox].multidrop 单次抽卡可以同时出多样物品
 [checkbox].fast_approximation 快速估算（二分搜索二项分布 cdf）
 
+[require](stats-base-binomial-cdf.js)
 [require](main.js)

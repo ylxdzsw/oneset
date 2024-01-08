@@ -9,4 +9,5 @@
 [checkbox].multidrop One chest may drop multiple items
 [checkbox].fast_approximation Fast approximation (binary search with the cdf of binomial distribution)
 
+[require](stats-base-binomial-cdf.js)
 [require](main.js)
